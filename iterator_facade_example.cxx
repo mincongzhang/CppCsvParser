@@ -1,8 +1,11 @@
 //Microsoft (R) C/C++ Optimizing Compiler Version 19.00.23506 for x86
 # include <boost/iterator/iterator_facade.hpp>
 #include <iostream>
-
-# include <iostream>
+#include <string>
+#include <memory>
+#include <iostream>
+#include <algorithm>
+#include <functional>
 
 struct node_base
 {
@@ -81,12 +84,26 @@ inline std::ostream& operator<<(std::ostream& s, node_base const& n)
     return s;
 }
 
-void dosth(){}
-
 int main()
 {
+    std::auto_ptr<node<int> > nodes(new node<int>(42));
+    nodes->append(new node<std::string>(" is greater than "));
+    nodes->append(new node<int>(13));
+
+    std::copy(
+        node_iterator(nodes.get()), node_iterator()
+      , std::ostream_iterator<node_base>(std::cout, " ")
+    );
+    std::cout << std::endl;
     
-    node<int> n(1);
-    std::cout << n <<std::endl;
-    std::cout << "Hello, world!\n";
+    std::for_each(
+        node_iterator(nodes.get()), node_iterator()
+      , std::mem_fun_ref(&node_base::double_me)
+    );
+
+    std::copy(
+        node_iterator(nodes.get()), node_iterator()
+      , std::ostream_iterator<node_base>(std::cout, "/")
+    );
+    std::cout << std::endl;
 }

@@ -23,7 +23,7 @@ parser.load("path/to/file", "path/to/cfg");
 
 for (CfgParser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
 	string val;
-	if(it->get("FIELD",val)){
+	if(it->get("FIELD2",val)){
 		//update something
 	}
 }

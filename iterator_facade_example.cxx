@@ -96,6 +96,11 @@ int main()
     );
     std::cout << std::endl;
     
+    for(node_iterator it(nodes.get());it!=node_iterator(); ++it ){
+        std::cout<<"printing"<<std::endl;
+        std::cout<<*it<<std::endl;
+    }
+    
     std::for_each(
         node_iterator(nodes.get()), node_iterator()
       , std::mem_fun_ref(&node_base::double_me)

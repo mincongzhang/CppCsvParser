@@ -37,3 +37,5 @@ https://stackoverflow.com/questions/7824097/wrap-stl-vector-and-change-behavior-
 2.Using `boost::iterator_facade<>`  
 https://stackoverflow.com/questions/3514457/using-boostiterator-facade  
 http://www.boost.org/doc/libs/1_62_0/libs/iterator/doc/iterator_facade.html
+
+3.Iterator Adaptor?

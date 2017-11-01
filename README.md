@@ -18,9 +18,10 @@ DELIM  = "|"
 to achieve:
 
 ```
-CfgableParser parser;
+CfgParser parser;
 parser.load("path/to/file", "path/to/cfg");
-for (CfgableParser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
+
+for (CfgParser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
 	string val;
 	if(it->get("FIELD",val)){
 		//update something

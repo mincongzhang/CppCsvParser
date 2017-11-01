@@ -28,3 +28,11 @@ for (CfgParser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
 	}
 }
 ```
+
+
+##### reference:
+1.Wrap STL vector and change behavior of its iterator  
+https://stackoverflow.com/questions/7824097/wrap-stl-vector-and-change-behavior-of-its-iterator
+
+2.Using `boost::iterator_facade<>`  
+https://stackoverflow.com/questions/3514457/using-boostiterator-facade

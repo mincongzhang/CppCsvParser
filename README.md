@@ -18,10 +18,10 @@ DELIM  = "|"
 to achieve:
 
 ```
-CfgParser parser;
+Parser parser;
 parser.load("path/to/file", "path/to/cfg");
 
-for (CfgParser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
+for (Parser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
 	string val;
 	if(it->get("FIELD2",val)){
 		//update something
@@ -35,4 +35,5 @@ for (CfgParser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
 https://stackoverflow.com/questions/7824097/wrap-stl-vector-and-change-behavior-of-its-iterator
 
 2.Using `boost::iterator_facade<>`  
-https://stackoverflow.com/questions/3514457/using-boostiterator-facade
+https://stackoverflow.com/questions/3514457/using-boostiterator-facade  
+http://www.boost.org/doc/libs/1_62_0/libs/iterator/doc/iterator_facade.html

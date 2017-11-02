@@ -21,10 +21,10 @@ public:
 		//load m_field_idx
 		//load m_map
 
-        m_field_idx["A"]=0;
-        m_field_idx["B"]=1;
-        m_field_idx["C"]=2;
-        
+		m_field_idx["A"]=0;
+		m_field_idx["B"]=1;
+		m_field_idx["C"]=2;
+
 		vector<string> v1;
 		v1.push_back("A");
 		v1.push_back("B");
@@ -38,18 +38,18 @@ public:
 		v3.push_back("b");
 		v3.push_back("c");
 		m_map.push_back(v1);
-        m_map.push_back(v3);
+		m_map.push_back(v3);
 		m_map.push_back(v2);
 		m_map.push_back(v3);
 
-        return true;
+		return true;
 	}
 
 	int getFieldIdx(const string & field_name){
-        if(m_field_idx.find(field_name)==m_field_idx.end()){
-            return -1;
-        }
-		
+		if(m_field_idx.find(field_name)==m_field_idx.end()){
+			return -1;
+		}
+
 		return m_field_idx[field_name];
 	}
 
@@ -72,34 +72,34 @@ private:
 		return this->m_it == other.m_it;
 	}
 
-    vector<string> & dereference() const { return *m_it; }
+	vector<string> & dereference() const { return *m_it; }
 
 	vector<vector<string> >::iterator m_it;
 public:
 	parser_iterator(){}
 	/*explicit*/ parser_iterator(const vector<vector<string> >::iterator & it): m_it(it) {}
-    
-    bool operator!=(const vector<vector<string> >::iterator & it){
-        return m_it!=it;
-    }
-    
-    void print(){
-        vector<string> v = *m_it;
-        for(int i=0; i<v.size(); ++i){
-            cout<<v[i]<<",";
-        }
-        cout<<endl;
-    }
-    
-    bool get(const int field_idx, string & field_val){
-        const vector<string> & v = *m_it;
-        if(field_idx<0 || field_idx>= v.size()){
-            return false;
-        }
-        
-        field_val = v[field_idx];
-        return true;
-    }
+
+	bool operator!=(const vector<vector<string> >::iterator & it){
+		return m_it!=it;
+	}
+
+	void print(){
+		vector<string> v = *m_it;
+		for(int i=0; i<v.size(); ++i){
+			cout<<v[i]<<",";
+		}
+		cout<<endl;
+	}
+
+	bool get(const int field_idx, string & field_val){
+		const vector<string> & v = *m_it;
+		if(field_idx<0 || field_idx>= v.size()){
+			return false;
+		}
+
+		field_val = v[field_idx];
+		return true;
+	}
 };
 
 
@@ -107,9 +107,12 @@ int main(){
 	Parser parser;
 	parser.load(/*filename, cfg*/);
 	for (parser_iterator it=parser.begin(); it!=parser.end(); it++){
-        //it.print();
-        string val;
-        it.get(parser.getFieldIdx("A"), val);
-        cout<<val<<endl;
+		//it.print();
+		string val;
+		if(it.get(parser.getFieldIdx("A"), val)){
+			cout<<val<<endl;
+		} else {
+			cout<<"unable to get val"<<endl;
+		}
 	}
 }

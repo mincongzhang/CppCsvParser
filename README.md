@@ -29,6 +29,22 @@ for (Parser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
 }
 ```
 
+actual code:
+
+```
+Parser parser;
+parser.load(/*filename, cfg*/);
+for (parser_iterator it=parser.begin(); it!=parser.end(); it++){
+    //it.print();
+    string val;
+    if(it.get(parser.getFieldIdx("A"), val)){
+        cout<<val<<endl;
+    } else {
+        cout<<"unable to get val"<<endl;
+    }
+}
+```
+
 
 ### reference:
 1.Wrap STL vector and change behavior of its iterator  

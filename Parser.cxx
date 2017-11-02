@@ -1,3 +1,9 @@
+# include <boost/iterator/iterator_facade.hpp>
+#include <memory>
+#include <iostream>
+#include <algorithm>
+#include <functional>
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,6 +36,7 @@ public:
 		m_map.push_back(v1);
 		m_map.push_back(v2);
 		m_map.push_back(v3);
+        return true;
 	}
 
 	int getFieldIdx(const string & field_name){
@@ -49,7 +56,7 @@ public:
 };
 
 
-class parser_iterator : public boost::iterator_facade <parser_iterator, parser, boost::forward_traversal_tag> {
+class parser_iterator : public boost::iterator_facade <parser_iterator, Parser, boost::forward_traversal_tag> {
 private:
 	friend class boost::iterator_core_access;
 	void increment() { ++m_it; }
@@ -58,23 +65,30 @@ private:
 		return this->m_it == other.m_it;
 	}
 
-	node_base& dereference() const { return *m_it; }
+	vector<string> & dereference() const { return *m_it; }
 
-	vector<vector<string> >::iterator it;
+	vector<vector<string> >::iterator m_it;
 public:
-	node_iterator(){}
-	explicit node_iterator(vector<vector<string> >::iterator it): m_it(it) {}
+	parser_iterator(){}
+	explicit parser_iterator(vector<vector<string> >::iterator it): m_it(it) {}
+    void print(){
+        vector<string> & v = *m_it;
+    }
 };
 
 
 int main(){
 	//Usecase
 	Parser parser;
-	parser.load("path/to/file", "path/to/cfg");
-	for (Parser::const_iterator it=parser.begin(); it!=parser.end(); ++it){
-		string val;
-		if(it->get("FIELD",val)){
-			//update something
-		}
+	parser.load();
+    parser_iterator it(parser.begin());
+    parser_iterator it_end(parser.end());
+    int count = 0;
+	for (; it!=it_end; ++it){
+        cout<<count<<endl;
+        count++;
+        //for(int i=0; i<v.size(); ++i){
+         //   cout<<v[i]<<endl;
+        //}
 	}
 }

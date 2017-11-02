@@ -77,7 +77,11 @@ private:
 	vector<vector<string> >::iterator m_it;
 public:
 	parser_iterator(){}
-	explicit parser_iterator(vector<vector<string> >::iterator it): m_it(it) {}
+	/*explicit*/ parser_iterator(const vector<vector<string> >::iterator & it): m_it(it) {}
+    
+    bool operator!=(const vector<vector<string> >::iterator & it){
+        return m_it!=it;
+    }
     
     void print(){
         vector<string> v = *m_it;
@@ -100,13 +104,9 @@ public:
 
 
 int main(){
-	//Usecase
 	Parser parser;
 	parser.load();
-    parser_iterator it(parser.begin());
-    parser_iterator it_end(parser.end());
-    int count = 0;
-	for (; it!=it_end; it++){
+	for (parser_iterator it=parser.begin(); it!=parser.end(); it++){
         //it.print();
         string val;
         it.get(parser.getFieldIdx("A"), val);

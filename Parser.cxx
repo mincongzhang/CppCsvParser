@@ -1,4 +1,4 @@
-# include <boost/iterator/iterator_facade.hpp>
+#include <boost/iterator/iterator_facade.hpp>
 #include <memory>
 #include <iostream>
 #include <algorithm>
@@ -105,7 +105,7 @@ public:
 
 int main(){
 	Parser parser;
-	parser.load();
+	parser.load(/*filename, cfg*/);
 	for (parser_iterator it=parser.begin(); it!=parser.end(); it++){
         //it.print();
         string val;

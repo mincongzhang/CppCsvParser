@@ -1,9 +1,4 @@
 #include <boost/iterator/iterator_facade.hpp>
-#include <memory>
-#include <iostream>
-#include <algorithm>
-#include <functional>
-
 #include <iostream>
 #include <string>
 #include <vector>
